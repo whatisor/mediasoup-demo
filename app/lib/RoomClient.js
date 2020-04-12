@@ -10,7 +10,10 @@ const VIDEO_CONSTRAINS =
 {
 	qvga : { width: { ideal: 320 }, height: { ideal: 240 } },
 	vga  : { width: { ideal: 640 }, height: { ideal: 480 } },
-	hd   : { width: { ideal: 1280 }, height: { ideal: 720 } }
+	hd   : { width: { ideal: 1280 }, height: { ideal: 720 } },
+	fhd  : { width: { ideal: 1920 }, height: { ideal: 1080 } },
+	k2   : { width: { ideal: 2048 }, height: { ideal: 2048 } },
+	k2s  : { width: { ideal: 4096 }, height: { ideal: 2048 } }
 };
 
 const PC_PROPRIETARY_CONSTRAINTS =
@@ -204,7 +207,7 @@ export default class RoomClient
 		this._webcam =
 		{
 			device     : null,
-			resolution : 'hd'
+			resolution : 'fhd'
 		};
 
 		// Set custom SVC scalability mode.
@@ -946,7 +949,7 @@ export default class RoomClient
 					throw new Error('no webcam devices');
 
 				logger.debug('enableWebcam() | calling getUserMedia()');
-
+				logger.debug('Camera id %s', device.deviceId);
 				const stream = await navigator.mediaDevices.getUserMedia(
 					{
 						video :
@@ -1101,7 +1104,7 @@ export default class RoomClient
 				this._webcam.device);
 
 			// Reset video resolution to HD.
-			this._webcam.resolution = 'hd';
+			// this._webcam.resolution = 'hd';
 
 			if (!this._webcam.device)
 				throw new Error('no webcam devices');
