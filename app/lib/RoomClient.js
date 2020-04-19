@@ -18,13 +18,13 @@ const VIDEO_CONSTRAINS =
 
 const PC_PROPRIETARY_CONSTRAINTS =
 {
-	optional : [ { googDscp: true } ]
+	optional : [ { googDscp: true }, { googCpuOveruseDetection: false } ]
 };
 
 const VIDEO_SIMULCAST_ENCODINGS =
 [
-	{ maxBitrate: 180000, scaleResolutionDownBy: 4 },
-	{ maxBitrate: 360000, scaleResolutionDownBy: 2 },
+	{ maxBitrate: 180000, scaleResolutionDownBy: 1 },
+	{ maxBitrate: 360000, scaleResolutionDownBy: 1 },
 	{ maxBitrate: 1500000, scaleResolutionDownBy: 1 }
 ];
 
@@ -40,7 +40,7 @@ const VIDEO_SVC_ENCODINGS =
 	{ scalabilityMode: 'S3T3', dtx: true }
 ];
 
-const EXTERNAL_VIDEO_SRC = '/resources/videos/video-audio-stereo.mp4';
+const EXTERNAL_VIDEO_SRC = '/resources/fHD.mp4';
 
 const logger = new Logger('RoomClient');
 
@@ -207,7 +207,7 @@ export default class RoomClient
 		this._webcam =
 		{
 			device     : null,
-			resolution : 'fhd'
+			resolution : 'k2s'
 		};
 
 		// Set custom SVC scalability mode.
@@ -1164,6 +1164,15 @@ export default class RoomClient
 					this._webcam.resolution = 'hd';
 					break;
 				case 'hd':
+					this._webcam.resolution = 'fhd';
+					break;
+				case 'fhd':
+					this._webcam.resolution = 'k2';
+					break;
+				case 'k2':
+					this._webcam.resolution = 'k2s';
+					break;
+				case 'k2s':
 					this._webcam.resolution = 'qvga';
 					break;
 				default:
