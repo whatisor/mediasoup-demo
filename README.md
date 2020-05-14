@@ -44,7 +44,14 @@ $ cp config.example.js config.js
 $ cd app
 $ npm install
 ```
+* Create cert:
 
+```bash
+$ cd server
+$ mkdir cert
+$ cd certs
+$ openssl req -sha256 -addext "subjectAltName = IP:192.168.1.199" -newkey rsa:4096 -nodes -keyout privkey.pem -x509 -days 730 -out fullchain.pem
+```
 
 ## Run it locally
 
