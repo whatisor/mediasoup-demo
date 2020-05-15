@@ -59,7 +59,7 @@ $ openssl req -sha256 -addext "subjectAltName = IP:192.168.1.199" -newkey rsa:40
 
 ```bash
 $ cd server
-$ npm start
+$ export MEDIASOUP_LISTEN_IP="<yourip>";npm start
 ```
 
 * In a different terminal build and run the browser application:
